@@ -7,6 +7,7 @@ public class Account {
 	public String name;
 	public long accountNumber;
 	public Date dateOfBirth;
+	public Date marriageDate;
 	public float balance;
 
 }

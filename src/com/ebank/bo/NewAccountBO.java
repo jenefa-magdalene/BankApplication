@@ -1,18 +1,26 @@
 package com.ebank.bo;
 
-import java.util.Date;
+import java.sql.SQLException;
 
-import com.ebank.db.AccountDao;
+import com.ebank.db.AccountDB;
+import com.ebank.filesystem.AccountDao;
 import com.ebank.vo.Account;
 
 public class NewAccountBO {
 	
-	public boolean create(Account account) {
+	AccountDB accountDB = new AccountDB();
+	
+	public boolean create(Account account) throws SQLException {
 		account.accountNumber = generateUniqueNumber();
 		// TODO add logic for create account
+		
+			AccountDB accountDB=new AccountDB();
+			accountDB.createAccount(account);
 		//EIther call DB or File
-		AccountDao accountDao = new AccountDao();
-		accountDao.createAccount(account);
+		/*AccountDao accountFile = new AccountDao();
+		accountFile.createAccount(account);*/
+		
+		
 		
 		return true;
 	}

@@ -1,5 +1,6 @@
-package com.ebank.ui;
+ package com.ebank.ui;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class NewAccountController {
 		return dateString;
 
 	}
-	public void create() {
+	public void create() throws SQLException {
 		System.out.println("Please enter the following details to open an account:");
 		System.out.println("Please enter Account holder Name");
 		Scanner sc = new Scanner(System.in);
@@ -47,7 +48,7 @@ public class NewAccountController {
 			Date date1 = null;
 			try {
 				date1 = new SimpleDateFormat("dd-MM-yyyy").parse(dateOfBirth);
-				formatDate(date1);
+				//formatDate(date1);
 				//System.out.println(date1);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
@@ -57,7 +58,7 @@ public class NewAccountController {
 			
 			
 		
-			account.balance = 100;
+			account.balance = 100; 
 			System.out.println("Balance"+account.balance);
 			
 			NewAccountBO newAccountBO = new NewAccountBO();
