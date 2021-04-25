@@ -35,6 +35,9 @@ public class NewAccountController {
 		System.out.println("Please Enter your Date Of Birth");
 		String dateOfBirth=sc.nextLine(); // 22-12=2012. test
 
+		//Age Check
+		
+	 
 
 		
 		System.out.println("Do you want to create an account?\nPlease confirm (Y or N):");

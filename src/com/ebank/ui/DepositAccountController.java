@@ -1,18 +1,47 @@
 package com.ebank.ui;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
+
+import com.ebank.bo.DepositAccountBO;
+import com.ebank.db.AccountDB;
+import com.ebank.vo.Account;
 
 public class DepositAccountController {
 
 	public void deposit() throws Exception {
-		System.out.println("Enter the account Number");
-		Scanner sc = new Scanner(System.in);
-		long accnumber = sc.nextLong();
-		File f = new File("D:\\data\\bank-accounts\\" + accnumber + ".txt");
+	
+		System.out.println("enter the accountNumber ");
+		Scanner sc=new Scanner(System.in);
+		long accno=sc.nextLong();
+		
+		AccountDB accountDB=new AccountDB();
+		Account userDetails = accountDB.searchAccount (accno);
+		
+		if(userDetails == null) {
+			System.out.println("Account not available ! Please provide a valid accountnumber");
+		} else {
+			System.out.println("You have a minimun balance of Rs."+userDetails.balance);
+			// TODO CAll deposit amount logic
+			
+			System.out.println("Please enter your deposit amount.");
+			float userprovidedbalance=sc.nextFloat();
+			
+			float balanceToBeDeposited = userprovidedbalance + userDetails.balance;
+			
+			
+			DepositAccountBO  depositAccountBO=new DepositAccountBO();
+			depositAccountBO.depositBO(accno, balanceToBeDeposited);
+			
+			
+			userDetails = accountDB.searchAccount (accno);
+		}
+		
+	
+		//DepositAccountBO  depositAccountBO=new DepositAccountBO();
+		//depositAccountBO.depositBO(accno);
+		
+		
+		/*File f = new File("D:\\data\\bank-accounts\\" + accnumber + ".txt");
 		if (f.exists()) {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 				 
@@ -36,8 +65,8 @@ public class DepositAccountController {
 	
 			/*
 			 * 
-			 */
-		}
+			 
+		}*/
 
 	}
 }
